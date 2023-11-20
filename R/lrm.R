@@ -55,11 +55,12 @@ lrm <- function(y, x, test.variable=1, test.matrix=matrix(c(0)), intercept=TRUE,
     X <- cbind(rep(1,n),X)
   }
   p <- ncol(X)
-  beta.hat <- lrm_coef(X, Y)
+  stXX <- solve(crossprod(X))
+  beta.hat <- stXX %*% crossprod(X, Y)
   Y.hat <- X%*%beta.hat
   residual <- Y-Y.hat
   sigmasquare.hat <- crossprod(residual)/(n-p)
-  var.beta.hat <- diag( solve(crossprod(X)) )*c(sigmasquare.hat)
+  var.beta.hat <- diag( stXX )*c(sigmasquare.hat)
   se.beta.hat <- sqrt(var.beta.hat)
   t.stat <- c(beta.hat/se.beta.hat)
   pvalue.t <- c(2*( 1-pt(q=abs(t.stat),df=n-p) ))
