@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/Xintong-ZHAI/lrm2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Xintong-ZHAI/lrm2/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/Xintong-ZHAI/lrm2/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Xintong-ZHAI/lrm2?branch=main)
 <!-- badges: end -->
 
 The goal of lrm is to estimate the parameters and test the significance
