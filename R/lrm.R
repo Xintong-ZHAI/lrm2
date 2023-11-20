@@ -35,7 +35,7 @@
 #'
 #'@examples
 #'lrm(mtcars$mpg, mtcars$wt)
-#'#'lrm(mtcars$mpg, mtcars$wt, estimate=FALSE, anova=TRUE, Ftest=TRUE)
+#'lrm(mtcars$mpg, mtcars$wt, estimate=FALSE, anova=TRUE, Ftest=TRUE)
 #'lrm(mtcars$mpg, mtcars$wt, test.variable=2, estimate=FALSE, partialtest=TRUE)
 #'lrm(mtcars$mpg, mtcars$wt, test.matrix=matrix(c(0,1),nrow=1,ncol=2), estimate=FALSE, GLH=TRUE)
 #'
