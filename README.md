@@ -4,6 +4,8 @@
 # lrm2
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/Xintong-ZHAI/lrm2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Xintong-ZHAI/lrm2/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of lrm is to estimate the parameters and test the significance
@@ -133,7 +135,7 @@ linearHypothesis(model=lm(mpg~wt, data = mtcars), hypothesis.matrix=contrast.T, 
 ``` r
 system.time(summary(lm(mpg~wt, data=mtcars)))
 #>    user  system elapsed 
-#>   0.001   0.000   0.001
+#>   0.000   0.000   0.001
 system.time(lrm(Y, X.vec))
 #>    user  system elapsed 
 #>       0       0       0
