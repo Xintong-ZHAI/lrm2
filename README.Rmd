@@ -1,0 +1,86 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# lrm2
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of lrm is to estimate the parameters and test the significance of any given matrix X and vector Y by linear regression model. It conducts the hypothesis testing, including F test, partial t test and general linear hypothesis.
+
+Compared with lm function, lrm use Crossprod function to accelerate the speed of matrix calculation, some details will be shown below.
+
+## Installation
+
+You can install the development version of lrm2 from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("Xintong-ZHAI/lrm2")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(lrm2)
+```
+
+Use mtcars dataset as an example to show the details of lrm library.
+
+The default function is use lrm to estimate the parameters of a linear regression model with intercept.
+```{r}
+X.vec <- mtcars$wt
+Y <- mtcars$mpg
+m <- lrm(Y, X.vec)
+m
+```
+
+Set Ftest=TRUE to test the significance of the whole model.
+```{r}
+m <- lrm(Y, X.vec, estimate=FALSE, anova=TRUE, Ftest=TRUE)
+m
+```
+
+Set partialtest=TRUE to test the significance of a selected parameter.
+```{r}
+m <- lrm(Y, X.vec, test.variable=2, estimate=FALSE, partialtest=TRUE)
+m
+```
+
+Set GLH=TRUE to test the significance of a subset of parameters
+```{r}
+m <- lrm(Y, X.vec, test.matrix=matrix(c(0,1),nrow=1,ncol=2), estimate=FALSE, GLH=TRUE)
+m
+```
+
+
+## Comparison with lm
+
+Compared with the most popular lm function, all the test results are the same, the running time is shorter and lrm also gives the direct solution of GLH, which is not included in lm function.
+```{r}
+library(car)
+summary(lm(mpg~wt, data=mtcars))
+anova(lm(mpg~wt, data=mtcars))
+contrast.T = matrix(c(0,1),nrow=1, ncol=2)
+linearHypothesis(model=lm(mpg~wt, data = mtcars), hypothesis.matrix=contrast.T, rhs=c(0))
+```
+
+```{r}
+system.time(summary(lm(mpg~wt, data=mtcars)))
+system.time(lrm(Y, X.vec))
+```
+
