@@ -73,11 +73,8 @@ m
 
 Compared with the most popular lm function, all the test results are the same, the running time is shorter and lrm also gives the direct solution of GLH, which is not included in lm function.
 ```{r}
-library(car)
 summary(lm(mpg~wt, data=mtcars))
 anova(lm(mpg~wt, data=mtcars))
-contrast.T = matrix(c(0,1),nrow=1, ncol=2)
-linearHypothesis(model=lm(mpg~wt, data = mtcars), hypothesis.matrix=contrast.T, rhs=c(0))
 ```
 
 ```{r}

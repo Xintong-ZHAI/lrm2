@@ -85,8 +85,6 @@ same, the running time is shorter and lrm also gives the direct solution
 of GLH, which is not included in lm function.
 
 ``` r
-library(car)
-#> Loading required package: carData
 summary(lm(mpg~wt, data=mtcars))
 #> 
 #> Call:
@@ -115,27 +113,12 @@ anova(lm(mpg~wt, data=mtcars))
 #> Residuals 30 278.32    9.28                      
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-contrast.T = matrix(c(0,1),nrow=1, ncol=2)
-linearHypothesis(model=lm(mpg~wt, data = mtcars), hypothesis.matrix=contrast.T, rhs=c(0))
-#> Linear hypothesis test
-#> 
-#> Hypothesis:
-#> wt = 0
-#> 
-#> Model 1: restricted model
-#> Model 2: mpg ~ wt
-#> 
-#>   Res.Df     RSS Df Sum of Sq      F    Pr(>F)    
-#> 1     31 1126.05                                  
-#> 2     30  278.32  1    847.73 91.375 1.294e-10 ***
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 ``` r
 system.time(summary(lm(mpg~wt, data=mtcars)))
 #>    user  system elapsed 
-#>   0.000   0.000   0.001
+#>   0.001   0.000   0.001
 system.time(lrm(Y, X.vec))
 #>    user  system elapsed 
 #>       0       0       0

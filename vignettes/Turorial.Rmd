@@ -60,15 +60,9 @@ m2 = lm(mpg~wt, data = mtcars)
 summary(m2)
 ```
 
-```{r}
-library(car)
-contrast.T = matrix(c(0,1),nrow=1, ncol=2)
-linearHypothesis(model=lm(mpg~wt, data = mtcars), hypothesis.matrix=contrast.T, rhs=c(0))
-```
 
 # Time consumption
 ```{r}
 system.time(summary(lm(mpg~wt, data=mtcars)))
 system.time(lrm(Y, X.vec))
-
 ```
